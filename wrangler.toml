@@ -1,0 +1,11 @@
+name = "ppsa-dashboard"
+compatibility_date = "2024-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+GOOGLE_SHEET_ID = "your_google_sheet_id_here"
+GOOGLE_SHEET_NAME = "Sheet1"
+
+[[env.production.vars]]
+GOOGLE_SHEET_ID = "your_google_sheet_id_here"
+GOOGLE_SHEET_NAME = "Sheet1"
