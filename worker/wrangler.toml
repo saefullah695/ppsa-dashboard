@@ -1,0 +1,9 @@
+name = "ppsa-dashboard"
+compatibility_date = "2023-10-01"
+
+[vars]
+GOOGLE_SHEET_ID = "your-google-sheet-id"
+
+# Add these secrets via wrangler secret put
+# wrangler secret put GOOGLE_SERVICE_ACCOUNT_EMAIL
+# wrangler secret put GOOGLE_PRIVATE_KEY
