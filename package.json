@@ -1,0 +1,23 @@
+{
+  "name": "ppsa-dashboard",
+  "version": "2.0.0",
+  "description": "PPSA Analytics Dashboard for Cloudflare",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:worker": "wrangler deploy workers/ppsa-api.js",
+    "deploy:pages": "wrangler pages deploy public --branch main"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "keywords": [
+    "dashboard",
+    "analytics",
+    "cloudflare",
+    "ppsa"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
