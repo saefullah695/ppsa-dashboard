@@ -1,0 +1,16 @@
+{
+  "name": "ppsa-dashboard",
+  "version": "2.0.0",
+  "description": "PPSA Analytics Dashboard for Cloudflare",
+  "main": "worker.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "googleapis": "^126.0.1"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
