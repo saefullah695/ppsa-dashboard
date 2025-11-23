@@ -1,27 +1,14 @@
-# PPSA Analytics Dashboard
+# PPSA Analytics Dashboard - Cloudflare Version
 
-Modern React-based dashboard for monitoring PPSA performance metrics, deployed on Cloudflare Workers.
+Dashboard analitik performa PPSA yang dioptimalkan untuk Cloudflare Workers dengan fokus pada tampilan mobile.
 
-## Features
+## Fitur Utama
 
-- 📊 Real-time performance analytics
-- 🎯 PPSA component tracking (PSM, PWP, SG, APC)
-- 🛒 Tebus performance monitoring
-- 📱 Mobile-responsive design
+- 📊 Analytics performa PPSA (PSM, PWP, SG, APC)
+- 🛒 Monitoring Tebus Suuegerr
 - 🤖 AI-powered insights
-- ☁️ Cloudflare Workers deployment
+- 📱 Responsive design untuk smartphone
+- 🔄 Real-time data dari Google Sheets
+- ☁️ Deploy di Cloudflare Workers
 
-## Setup Instructions
-
-### Prerequisites
-
-- Node.js 18+
-- Cloudflare account
-- Google Service Account credentials
-- Google Sheets with PPSA data
-
-### 1. Clone Repository
-
-```bash
-git clone <repository-url>
-cd ppsa-dashboard
+## Struktur Project
