@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekap Stock Opname - 2GC6 BAROS PANDEGLANG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary-color: #8b5cf6;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --warning-color: #f59e0b;
+            --dark-bg: #1e293b;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 1rem;
+            color: var(--text-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .store-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-tab {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.875rem 1rem;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            white-space: nowrap;
+        }
+
+        .nav-tab.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Dashboard Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-card.primary .stat-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .stat-card.success .stat-icon {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .stat-card.warning .stat-icon {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-header::before {
+            content: '';
+            width: 4px;
+            height: 1.5rem;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-control, .form-select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .form-control:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.875rem 1.5rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .btn-warning {
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--text-secondary);
+            color: white;
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Item List */
+        .item-row {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-bottom: 0.75rem;
+            border: 2px solid var(--border-color);
+        }
+
+        .item-row-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .item-number {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Alert */
+        .alert {
+            padding: 1rem 1.25rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #6ee7b7;
+        }
+
+        .alert-danger {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #fca5a5;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            color: #92400e;
+            border: 2px solid #fcd34d;
+        }
+
+        /* History Card */
+        .history-item {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .history-title {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .history-time {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .history-details {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .badge-primary {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 1rem;
+            margin-top: 2rem;
+            box-shadow: var(--shadow);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.25rem;
+            }
+
+            .store-name {
+                font-size: 0.95rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn-group .btn {
+                width: 100%;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .header {
+                padding: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-tab {
+                min-width: 100px;
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Selisih styles */
+        .selisih-positive {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .selisih-negative {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .selisih-zero {
+            color: #6c757d;
+        }
+        
+        /* Report Styles */
+        .report-card {
+            background: #fff5f5;
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .report-title {
+            font-weight: 700;
+            color: #991b1b;
+        }
+        
+        .report-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+        
+        .report-summary {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .summary-card {
+            flex: 1;
+            min-width: 150px;
+            background: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .summary-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .summary-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .summary-total {
+            color: #dc3545;
+        }
+        
+        .summary-items {
+            color: #f59e0b;
+        }
+        
+        .summary-avg {
+            color: #10b981;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="store-name">🏪 2GC6 BAROS PANDEGLANG</div>
+            <h1>📦 Rekap Stock Opname</h1>
+            <p>Sistem input data Stock Opname - Terintegrasi dengan Google Sheets</p>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab('dashboard')">📊 Dashboard</button>
+            <button class="nav-tab" onclick="switchTab('input')">✍️ Input Data</button>
+            <button class="nav-tab" onclick="switchTab('history')">📋 Riwayat</button>
+            <button class="nav-tab" onclick="switchTab('report')">📈 Laporan</button>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card primary">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-value" id="totalItems">0</div>
+                    <div class="stat-label">Total Item Tersedia</div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-value" id="todayData">0</div>
+                    <div class="stat-label">Input Hari Ini</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-icon">🔔</div>
+                    <div class="stat-value" id="itemCount">0</div>
+                    <div class="stat-label">Item Dipilih</div>
+                </div>
+            </div>
+
+            <!-- Quick Info Card -->
+            <div class="card">
+                <div class="card-header">ℹ️ Informasi Cepat</div>
+                <div class="alert alert-warning">
+                    <span>⚠️</span>
+                    <span>Pastikan data yang diinput sudah sesuai dengan kondisi fisik barang</span>
+                </div>
+                <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem;">
+                        <span style="font-weight: 600;">📅 Tanggal</span>
+                        <span id="currentDate">-</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem;">
+                        <span style="font-weight: 600;">⏰ Waktu</span>
+                        <span id="currentTime">-</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem;">
+                        <span style="font-weight: 600;">🔄 Status Sinkronisasi</span>
+                        <span id="syncStatus" class="badge badge-success">Aktif</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card">
+                <div class="card-header">🕐 Aktivitas Terbaru</div>
+                <div id="recentActivity">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <p>Belum ada aktivitas hari ini</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Data Tab -->
+        <div id="input" class="tab-content">
+            <!-- Loading Indicator -->
+            <div class="loading" id="loadingIndicator">
+                <div class="spinner"></div>
+                <p>Memuat data...</p>
+            </div>
+
+            <!-- Form Input -->
+            <div class="card">
+                <div class="card-header">📝 Form Input Data</div>
+                
+                <div class="form-group">
+                    <label class="form-label">📅 Tanggal Rekap</label>
+                    <input type="date" class="form-control" id="tanggal" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">👤 Nama Pengirim</label>
+                    <select class="form-select" id="namaPengirim" required>
+                        <option value="">Pilih Nama Pengirim</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">🔢 PLU Barang</label>
+                    <input type="text" class="form-control" id="pluInput" placeholder="Masukkan PLU barang">
+                    <button class="btn btn-primary btn-block" style="margin-top: 0.5rem;" onclick="searchPLU()">
+                        <i class="fas fa-search me-1"></i>Cari PLU
+                    </button>
+                </div>
+
+                <!-- Item Details (akan muncul setelah PLU ditemukan) -->
+                <div id="itemDetails" style="display: none;">
+                    <div class="alert alert-success">
+                        <span>✅</span>
+                        <span>Data barang ditemukan</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">📝 Deskripsi Barang</label>
+                        <input type="text" class="form-control" id="descp" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">🏷️ Kategori</label>
+                        <input type="text" class="form-control" id="category" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">🏷️ Tag</label>
+                        <input type="text" class="form-control" id="tag" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">💰 HPP</label>
+                        <input type="text" class="form-control" id="hpp" readonly>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">📊 Stock</label>
+                            <input type="number" class="form-control" id="stock" value="0" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">📋 Selisih Qty</label>
+                            <input type="number" class="form-control" id="selisihQty" value="0">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">💰 Selisih Rupiah</label>
+                        <input type="text" class="form-control" id="selisihRp" readonly>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-primary" id="addItemBtn">
+                            <i class="fas fa-plus me-1"></i>Tambah Item
+                        </button>
+                        <button class="btn btn-danger" id="clearBtn">
+                            <i class="fas fa-trash me-1"></i>Hapus Semua
+                        </button>
+                        <button class="btn btn-secondary" id="refreshBtn">
+                            <i class="fas fa-sync-alt me-1"></i>Refresh
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item Details -->
+            <div class="card">
+                <div class="card-header">📋 Daftar Item yang Dipilih</div>
+                <div id="itemsTableBody">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📦</div>
+                        <p>Belum ada item yang dipilih</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="btn-group">
+                <button class="btn btn-success btn-block" onclick="submitData()">
+                    <i class="fas fa-paper-plane me-2"></i>Simpan Data
+                </button>
+                <button class="btn btn-primary btn-block" id="syncBtn">
+                    <i class="fas fa-sync me-2"></i>Sinkronisasi Data
+                </button>
+            </div>
+        </div>
+
+        <!-- History Tab -->
+        <div id="history" class="tab-content">
+            <div class="card">
+                <div class="card-header">📋 Riwayat Input Hari Ini</div>
+                <div id="historyTableBody">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <p>Belum ada riwayat input hari ini</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Tab -->
+        <div id="report" class="tab-content">
+            <div class="card">
+                <div class="card-header">📈 Laporan Stock Opname</div>
+                
+                <!-- Filter Options -->
+                <div class="form-group">
+                    <label class="form-label">📅 Filter Periode</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                        <input type="date" class="form-control" id="filterStartDate">
+                        <input type="date" class="form-control" id="filterEndDate">
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-block" onclick="generateReport()">📊 Generate Laporan</button>
+
+                <div class="table-container" style="margin-top: 1.5rem;">
+                    <table id="reportTable">
+                        <thead>
+                            <tr>
+                                <th>ID Rekap</th>
+                                <th>Tanggal</th>
+                                <th>Pengirim</th>
+                                <th>PLU</th>
+                                <th>Deskripsi</th>
+                                <th>Kategori</th>
+                                <th>Tag</th>
+                                <th>Stock</th>
+                                <th>Selisih Qty</th>
+                                <th>Selisih Rp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="10" style="text-align: center; color: var(--text-secondary);">
+                                    Klik "Generate Laporan" untuk menampilkan data
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2024 Rekap Stock Opname | 2GC6 BAROS PANDEGLANG</p>
+            <p>Terintegrasi dengan Google Sheets | Multi-Input Support</p>
+        </div>
+    </div>
+
+    <script>
+        // Konfigurasi - URL Worker untuk mengakses Google Sheets
+        const WORKER_URL = 'https://rekap-so.saefullah695.workers.dev';
+        
+        // Nama worksheet
+        const MS_SHEET = 'MS';
+        const ABSENSI_SHEET = 'Absensi';
+        const REKAP_SO_SHEET = 'RekapSo';
+        
+        // Variabel global
+        let msItems = [];
+        let kasirList = [];
+        let currentItems = [];
+        let historyData = [];
+        
+        // Fungsi generate ID Rekap
+        function generateIdRekap() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            return `REKAP_${year}${month}${day}_${hours}${minutes}${seconds}`;
+        }
+        
+        // Fungsi untuk mengambil data dari Google Sheets melalui Worker
+        async function fetchSheetData(sheetName, range = '') {
+            const url = `${WORKER_URL}/api/sheets?sheetName=${encodeURIComponent(sheetName)}&range=${encodeURIComponent(range)}`;
+            
+            try {
+                console.log(`Fetching data from: ${url}`);
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log(`Data fetched from ${sheetName}:`, data);
+                return data.values || [];
+            } catch (error) {
+                console.error(`Error fetching data from ${sheetName}:`, error);
+                showError(`Gagal mengambil data dari ${sheetName}: ${error.message}`);
+                return [];
+            }
+        }
+        
+        // Fungsi untuk mengirim data ke Google Sheets melalui Worker
+        async function appendToSheet(sheetName, data) {
+            const url = `${WORKER_URL}/api/sheets/append`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        sheetName: sheetName,
+                        values: data
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                return await response.json();
+            } catch (error) {
+                console.error(`Error appending data to ${sheetName}:`, error);
+                throw error;
+            }
+        }
+        
+        // Fungsi untuk memuat data item dari worksheet MS
+        async function loadMSItems() {
+            showLoading();
+            const data = await fetchSheetData(MS_SHEET);
+            
+            if (data && data.length > 0) {
+                msItems = data.slice(1).map(row => ({
+                    plu: row[0] || '',
+                    descp: row[1] || '',
+                    category: row[2] || '',
+                    tag: row[3] || '',
+                    hpp: parseFloat(row[4]) || 0
+                }));
+                
+                updateTotalItems();
+                hideLoading();
+            } else {
+                console.error('Tidak ada data item ditemukan atau data kosong');
+                showError('Tidak ada data item ditemukan');
+                hideLoading();
+            }
+        }
+        
+        // Fungsi untuk memuat data kasir dari worksheet Absensi
+        async function loadKasirList() {
+            const data = await fetchSheetData(ABSENSI_SHEET);
+            
+            if (data && data.length > 0) {
+                // Mengambil kolom NAMA (indeks 1) dari worksheet Absensi
+                kasirList = [...new Set(data.slice(1).map(row => row[1] || '').filter(name => name))];
+                
+                updateKasirSelect();
+            } else {
+                console.error('Tidak ada data kasir ditemukan');
+                showError('Tidak ada data kasir ditemukan');
+            }
+        }
+        
+        // Fungsi untuk memperbarui dropdown kasir
+        function updateKasirSelect() {
+            const select = document.getElementById('namaPengirim');
+            select.innerHTML = '<option value="">Pilih Nama Pengirim</option>';
+            
+            kasirList.forEach(kasir => {
+                const option = document.createElement('option');
+                option.value = kasir;
+                option.textContent = kasir;
+                select.appendChild(option);
+            });
+        }
+        
+        // Fungsi untuk mencari PLU
+        function searchPLU() {
+            const pluInput = document.getElementById('pluInput').value.trim();
+            
+            if (!pluInput) {
+                alert('Masukkan PLU terlebih dahulu!');
+                return;
+            }
+            
+            const item = msItems.find(i => i.plu === pluInput);
+            
+            if (item) {
+                document.getElementById('itemDetails').style.display = 'block';
+                document.getElementById('descp').value = item.descp;
+                document.getElementById('category').value = item.category;
+                document.getElementById('tag').value = item.tag;
+                document.getElementById('hpp').value = formatCurrency(item.hpp);
+                
+                // Hitung selisih rupiah
+                calculateSelisihRp();
+            } else {
+                alert('PLU tidak ditemukan!');
+                document.getElementById('itemDetails').style.display = 'none';
+            }
+        }
+        
+        // Fungsi untuk menghitung selisih rupiah
+        function calculateSelisihRp() {
+            const hpp = parseFloat(document.getElementById('hpp').value.replace(/[^\d]/g, '')) || 0;
+            const selisihQty = parseInt(document.getElementById('selisihQty').value) || 0;
+            const selisihRp = hpp * selisihQty;
+            
+            document.getElementById('selisihRp').value = formatCurrency(selisihRp);
+        }
+        
+        // Fungsi untuk format mata uang
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(value);
+        }
+        
+        // Fungsi untuk menambah item ke tabel
+        function addItemToTable() {
+            const pluInput = document.getElementById('pluInput').value.trim();
+            const stock = parseInt(document.getElementById('stock').value) || 0;
+            const selisihQty = parseInt(document.getElementById('selisihQty').value) || 0;
+            
+            if (!pluInput) {
+                alert('Masukkan PLU terlebih dahulu!');
+                return;
+            }
+            
+            const item = msItems.find(i => i.plu === pluInput);
+            
+            if (!item) {
+                alert('PLU tidak ditemukan!');
+                return;
+            }
+            
+            const hpp = parseFloat(document.getElementById('hpp').value.replace(/[^\d]/g, '')) || 0;
+            const selisihRp = hpp * selisihQty;
+            
+            const existingIndex = currentItems.findIndex(i => i.plu === pluInput);
+            
+            if (existingIndex !== -1) {
+                currentItems[existingIndex].stock = stock;
+                currentItems[existingIndex].selisihQty = selisihQty;
+                currentItems[existingIndex].selisihRp = selisihRp;
+            } else {
+                currentItems.push({
+                    plu: item.plu,
+                    descp: item.descp,
+                    category: item.category,
+                    tag: item.tag,
+                    stock: stock,
+                    selisihQty: selisihQty,
+                    selisihRp: selisihRp
+                });
+            }
+            
+            updateItemsTable();
+            
+            // Reset form
+            document.getElementById('pluInput').value = '';
+            document.getElementById('stock').value = '0';
+            document.getElementById('selisihQty').value = '0';
+            document.getElementById('selisihRp').value = formatCurrency(0);
+            document.getElementById('itemDetails').style.display = 'none';
+        }
+        
+        // Fungsi untuk memperbarui tabel item
+        function updateItemsTable() {
+            const tbody = document.getElementById('itemsTableBody');
+            
+            if (currentItems.length === 0) {
+                tbody.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📦</div>
+                        <p>Belum ada item yang dipilih</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = '';
+            
+            currentItems.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = 'item-row';
+                
+                let selisihClass = 'selisih-zero';
+                if (item.selisihQty > 0) {
+                    selisihClass = 'selisih-positive';
+                } else if (item.selisihQty < 0) {
+                    selisihClass = 'selisih-negative';
+                }
+                
+                const selisihQtyText = item.selisihQty > 0 ? `+${item.selisihQty}` : item.selisihQty;
+                
+                row.innerHTML = `
+                    <div class="item-row-header">
+                        <span class="item-number">Item ${index + 1}</span>
+                        <button class="btn btn-danger btn-sm" onclick="removeItem(${index})">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0.75rem;">
+                        <label class="form-label">PLU</label>
+                        <input type="text" class="form-control" value="${item.plu}" readonly>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0.75rem;">
+                        <label class="form-label">Deskripsi</label>
+                        <input type="text" class="form-control" value="${item.descp}" readonly>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label">Kategori</label>
+                            <input type="text" class="form-control" value="${item.category}" readonly>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label">Tag</label>
+                            <input type="text" class="form-control" value="${item.tag}" readonly>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.75rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label">Stock</label>
+                            <input type="number" class="form-control" value="${item.stock}" readonly>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label">Selisih Qty</label>
+                            <input type="number" class="form-control ${selisihClass}" value="${item.selisihQty}" readonly>
+                        </div>
+                    </div>
+                    <div style="margin-top: 0.75rem; padding: 0.75rem; background: ${getSelisihColor(item.selisihQty)}; border-radius: 0.5rem; text-align: center; font-weight: 600; color: ${getSelisihTextColor(item.selisihQty)};">
+                        Selisih Rupiah: ${formatCurrency(item.selisihRp)}
+                    </div>
+                `;
+                
+                tbody.appendChild(row);
+            });
+            
+            document.getElementById('itemCount').textContent = currentItems.length;
+        }
+        
+        function getSelisihColor(selisih) {
+            if (selisih === 0) return '#d1fae5';
+            if (selisih > 0) return '#fee2e2';
+            return '#fef3c7';
+        }
+        
+        function getSelisihTextColor(selisih) {
+            if (selisih === 0) return '#065f46';
+            if (selisih > 0) return '#991b1b';
+            return '#92400e';
+        }
+        
+        // Fungsi untuk menghapus item dari tabel
+        function removeItem(index) {
+            currentItems.splice(index, 1);
+            updateItemsTable();
+        }
+        
+        // Fungsi untuk menghapus semua item
+        function clearAllItems() {
+            if (confirm('Apakah Anda yakin ingin menghapus semua item?')) {
+                currentItems = [];
+                updateItemsTable();
+            }
+        }
+        
+        // Fungsi untuk memperbarui statistik
+        function updateTotalItems() {
+            document.getElementById('totalItems').textContent = msItems.length;
+        }
+        
+        // Fungsi untuk menampilkan loading
+        function showLoading() {
+            document.getElementById('loadingIndicator').style.display = 'block';
+        }
+        
+        // Fungsi untuk menyembunyikan loading
+        function hideLoading() {
+            document.getElementById('loadingIndicator').style.display = 'none';
+        }
+
+        // Fungsi untuk menampilkan error
+        function showError(message) {
+            alert(`Error: ${message}`);
+        }
+        
+        // Fungsi untuk mengirim data ke Google Sheets
+        async function submitData() {
+            if (currentItems.length === 0) {
+                alert('Tidak ada item yang ditambahkan!');
+                return;
+            }
+            
+            const tanggal = document.getElementById('tanggal').value;
+            const namaPengirim = document.getElementById('namaPengirim').value;
+            
+            if (!tanggal || !namaPengirim) {
+                alert('Harap lengkapi semua field!');
+                return;
+            }
+            
+            showLoading();
+            
+            try {
+                // Format tanggal ke DD/MM/YYYY
+                const dateObj = new Date(tanggal);
+                const day = String(dateObj.getDate()).padStart(2, '0');
+                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                const year = dateObj.getFullYear();
+                const formattedDate = `${day}/${month}/${year}`;
+                
+                let successCount = 0;
+                
+                for (const item of currentItems) {
+                    const idRekap = generateIdRekap();
+                    
+                    const rowData = [
+                        idRekap,
+                        formattedDate,
+                        namaPengirim,
+                        item.plu,
+                        item.descp,
+                        item.category,
+                        item.tag,
+                        item.stock,
+                        item.selisihQty,
+                        item.selisihRp
+                    ];
+                    
+                    await appendToSheet(REKAP_SO_SHEET, [rowData]);
+                    successCount++;
+                }
+                
+                alert(`Data berhasil disimpan! ${successCount} item ditambahkan.`);
+                
+                document.getElementById('tanggal').value = new Date().toISOString().split('T')[0];
+                document.getElementById('namaPengirim').value = '';
+                currentItems = [];
+                updateItemsTable();
+                
+                // Memperbarui data di semua tab setelah submit
+                await loadHistory();
+                await updateRecentActivity();
+                updateDashboardStats();
+                
+            } catch (error) {
+                console.error('Error submitting data:', error);
+                alert('Terjadi kesalahan saat menyimpan data. Silakan coba lagi.');
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        // Fungsi untuk memperbarui statistik dashboard
+        async function updateDashboardStats() {
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const year = today.getFullYear();
+            const formattedToday = `${day}/${month}/${year}`;
+            
+            try {
+                const data = await fetchSheetData(REKAP_SO_SHEET);
+                
+                if (data && data.length > 0) {
+                    const headers = data[0];
+                    const tanggalCol = headers.indexOf('TANGGAL');
+                    
+                    // Hitung jumlah input hari ini
+                    const todayData = data.slice(1).filter(row => {
+                        return row[tanggalCol] === formattedToday;
+                    });
+                    
+                    // Hitung jumlah unik transaksi hari ini
+                    const uniqueTransactions = new Set();
+                    todayData.forEach(row => {
+                        const pengirimCol = headers.indexOf('PENGIRIM');
+                        const key = `${row[pengirimCol]}-${row[tanggalCol]}`;
+                        uniqueTransactions.add(key);
+                    });
+                    
+                    document.getElementById('todayData').textContent = uniqueTransactions.size;
+                }
+            } catch (error) {
+                console.error('Error updating dashboard stats:', error);
+            }
+        }
+        
+        // Fungsi untuk memuat riwayat input hari ini
+        async function loadHistory() {
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const year = today.getFullYear();
+            const formattedToday = `${day}/${month}/${year}`;
+            
+            try {
+                const data = await fetchSheetData(REKAP_SO_SHEET);
+                const tbody = document.getElementById('historyTableBody');
+                tbody.innerHTML = '';
+                
+                if (data && data.length > 0) {
+                    const headers = data[0];
+                    const idCol = headers.indexOf('ID_REKAP');
+                    const tanggalCol = headers.indexOf('TANGGAL');
+                    const pengirimCol = headers.indexOf('PENGIRIM');
+                    const pluCol = headers.indexOf('PLU');
+                    const descpCol = headers.indexOf('DESCP');
+                    const stockCol = headers.indexOf('STOCK');
+                    const selisihQtyCol = headers.indexOf('SELISIH_QTY');
+                    const selisihRpCol = headers.indexOf('SELISIH_RP');
+                    
+                    const todayData = data.slice(1).filter(row => {
+                        return row[tanggalCol] === formattedToday;
+                    });
+                    
+                    const groupedData = {};
+                    todayData.forEach(row => {
+                        const key = `${row[pengirimCol]}-${row[tanggalCol]}`;
+                        if (!groupedData[key]) {
+                            groupedData[key] = {
+                                pengirim: row[pengirimCol],
+                                tanggal: row[tanggalCol],
+                                count: 0,
+                                totalSelisihRp: 0
+                            };
+                        }
+                        groupedData[key].count++;
+                        groupedData[key].totalSelisihRp += parseFloat(row[selisihRpCol]) || 0;
+                    });
+                    
+                    if (Object.keys(groupedData).length === 0) {
+                        tbody.innerHTML = `
+                            <div class="empty-state">
+                                <div class="empty-state-icon">📭</div>
+                                <p>Belum ada riwayat input hari ini</p>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    // Urutkan berdasarkan jumlah item terbanyak
+                    const sortedData = Object.values(groupedData).sort((a, b) => 
+                        b.count - a.count
+                    );
+                    
+                    sortedData.forEach(item => {
+                        const row = document.createElement('div');
+                        row.className = 'history-item';
+                        
+                        row.innerHTML = `
+                            <div class="history-header">
+                                <span class="history-title">Input oleh ${item.pengirim}</span>
+                                <span class="badge badge-primary">${item.count} item</span>
+                            </div>
+                            <div class="history-details">
+                                <span>📅 ${item.tanggal}</span>
+                                <span>👤 ${item.pengirim}</span>
+                                <span class="badge ${item.totalSelisihRp < 0 ? 'badge-danger' : 'badge-success'}">
+                                    Total Selisih: ${formatCurrency(item.totalSelisihRp)}
+                                </span>
+                            </div>
+                        `;
+                        
+                        tbody.appendChild(row);
+                    });
+                } else {
+                    tbody.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📭</div>
+                            <p>Belum ada riwayat input hari ini</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading history:', error);
+                const tbody = document.getElementById('historyTableBody');
+                tbody.innerHTML = `
+                    <div class="alert alert-danger">
+                        <span>❌</span>
+                        <span>Gagal memuat riwayat: ${error.message}</span>
+                    </div>
+                `;
+            }
+        }
+        
+        // Fungsi untuk memperbarui aktivitas terbaru
+        async function updateRecentActivity() {
+            const recentActivity = document.getElementById('recentActivity');
+            
+            try {
+                const data = await fetchSheetData(REKAP_SO_SHEET);
+                
+                if (!data || data.length < 2) {
+                    recentActivity.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📭</div>
+                            <p>Belum ada aktivitas hari ini</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const headers = data[0];
+                const idCol = headers.indexOf('ID_REKAP');
+                const tanggalCol = headers.indexOf('TANGGAL');
+                const pengirimCol = headers.indexOf('PENGIRIM');
+                const pluCol = headers.indexOf('PLU');
+                const descpCol = headers.indexOf('DESCP');
+                const stockCol = headers.indexOf('STOCK');
+                const selisihQtyCol = headers.indexOf('SELISIH_QTY');
+                const selisihRpCol = headers.indexOf('SELISIH_RP');
+                
+                const today = new Date();
+                const day = String(today.getDate()).padStart(2, '0');
+                const month = String(today.getMonth() + 1).padStart(2, '0');
+                const year = today.getFullYear();
+                const formattedToday = `${day}/${month}/${year}`;
+                
+                const todayData = data.slice(1).filter(row => {
+                    return row[tanggalCol] === formattedToday;
+                });
+                
+                const groupedData = {};
+                todayData.forEach(row => {
+                    const key = `${row[pengirimCol]}-${row[tanggalCol]}`;
+                    if (!groupedData[key]) {
+                        groupedData[key] = {
+                            pengirim: row[pengirimCol],
+                            tanggal: row[tanggalCol],
+                            count: 0,
+                            totalSelisihRp: 0
+                        };
+                    }
+                    groupedData[key].count++;
+                    groupedData[key].totalSelisihRp += parseFloat(row[selisihRpCol]) || 0;
+                });
+                
+                if (Object.keys(groupedData).length === 0) {
+                    recentActivity.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📭</div>
+                            <p>Belum ada aktivitas hari ini</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Ambil 3 aktivitas terbaru
+                const sortedData = Object.values(groupedData)
+                    .sort((a, b) => b.count - a.count)
+                    .slice(0, 3);
+                
+                recentActivity.innerHTML = '';
+                
+                sortedData.forEach(item => {
+                    const activityItem = document.createElement('div');
+                    activityItem.className = 'history-item';
+                    
+                    activityItem.innerHTML = `
+                        <div class="history-header">
+                            <span class="history-title">Input oleh ${item.pengirim}</span>
+                            <span class="badge badge-primary">${item.count} item</span>
+                        </div>
+                        <div class="history-details">
+                            <span>📅 ${item.tanggal}</span>
+                            <span class="badge ${item.totalSelisihRp < 0 ? 'badge-danger' : 'badge-success'}">
+                                Total Selisih: ${formatCurrency(item.totalSelisihRp)}
+                            </span>
+                        </div>
+                    `;
+                    
+                    recentActivity.appendChild(activityItem);
+                });
+                
+            } catch (error) {
+                console.error('Error updating recent activity:', error);
+                recentActivity.innerHTML = `
+                    <div class="alert alert-danger">
+                        <span>❌</span>
+                        <span>Gagal memuat aktivitas terbaru</span>
+                    </div>
+                `;
+            }
+        }
+
+        // Fungsi untuk sinkronisasi data
+        async function syncData() {
+            showLoading();
+            try {
+                await loadMSItems();
+                await loadKasirList();
+                await loadHistory();
+                await updateRecentActivity();
+                await updateDashboardStats();
+                alert('Data berhasil disinkronisasi!');
+            } catch (error) {
+                console.error('Error syncing data:', error);
+                alert('Terjadi kesalahan saat sinkronisasi data.');
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        // Fungsi untuk generate laporan
+        async function generateReport() {
+            const startDate = document.getElementById('filterStartDate').value;
+            const endDate = document.getElementById('filterEndDate').value;
+
+            if (!startDate || !endDate) {
+                alert('⚠️ Pilih periode tanggal terlebih dahulu!');
+                return;
+            }
+
+            showLoading();
+            
+            try {
+                const data = await fetchSheetData(REKAP_SO_SHEET);
+                const tbody = document.querySelector('#reportTable tbody');
+                
+                if (!data || data.length < 2) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="10" style="text-align: center; color: var(--text-secondary);">
+                                Tidak ada data untuk ditampilkan
+                            </td>
+                        </tr>
+                    `;
+                    hideLoading();
+                    return;
+                }
+
+                const headers = data[0];
+                const idCol = headers.indexOf('ID_REKAP');
+                const tanggalCol = headers.indexOf('TANGGAL');
+                const pengirimCol = headers.indexOf('PENGIRIM');
+                const pluCol = headers.indexOf('PLU');
+                const descpCol = headers.indexOf('DESCP');
+                const categoryCol = headers.indexOf('CATEGORY_NAME');
+                const tagCol = headers.indexOf('TAG');
+                const stockCol = headers.indexOf('STOCK');
+                const selisihQtyCol = headers.indexOf('SELISIH_QTY');
+                const selisihRpCol = headers.indexOf('SELISIH_RP');
+
+                // Format tanggal untuk filter
+                const startDateObj = new Date(startDate);
+                const endDateObj = new Date(endDate);
+                
+                const filteredData = data.slice(1).filter(row => {
+                    const rowDateParts = row[tanggalCol].split('/');
+                    if (rowDateParts.length !== 3) return false;
+                    
+                    const rowDate = new Date(`${rowDateParts[2]}-${rowDateParts[1]}-${rowDateParts[0]}`);
+                    
+                    return rowDate >= startDateObj && rowDate <= endDateObj;
+                });
+
+                if (filteredData.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="10" style="text-align: center; color: var(--text-secondary);">
+                                Tidak ada data untuk periode yang dipilih
+                            </td>
+                        </tr>
+                    `;
+                    hideLoading();
+                    return;
+                }
+
+                let rows = '';
+                filteredData.forEach(row => {
+                    const selisihQty = parseInt(row[selisihQtyCol]) || 0;
+                    const selisihClass = selisihQty > 0 ? 'selisih-positive' : selisihQty < 0 ? 'selisih-negative' : 'selisih-zero';
+                    const selisihQtyText = selisihQty > 0 ? `+${selisihQty}` : selisihQty;
+                    
+                    rows += `
+                        <tr>
+                            <td>${row[idCol]}</td>
+                            <td>${row[tanggalCol]}</td>
+                            <td>${row[pengirimCol]}</td>
+                            <td>${row[pluCol]}</td>
+                            <td>${row[descpCol]}</td>
+                            <td>${row[categoryCol]}</td>
+                            <td>${row[tagCol]}</td>
+                            <td>${row[stockCol]}</td>
+                            <td class="${selisihClass}">${selisihQtyText}</td>
+                            <td>${formatCurrency(parseFloat(row[selisihRpCol]) || 0)}</td>
+                        </tr>
+                    `;
+                });
+
+                tbody.innerHTML = rows;
+            } catch (error) {
+                console.error('Error generating report:', error);
+                alert('Terjadi kesalahan saat membuat laporan.');
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        // Fungsi untuk berpindah tab
+        function switchTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Remove active class from all nav tabs
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Jika pindah ke tab Dashboard atau Riwayat, refresh data
+            if (tabName === 'dashboard') {
+                updateRecentActivity();
+                updateDashboardStats();
+            } else if (tabName === 'history') {
+                loadHistory();
+            }
+        }
+        
+        // Fungsi untuk memperbarui tanggal dan waktu
+        function updateDateTime() {
+            const now = new Date();
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('id-ID', dateOptions);
+            document.getElementById('currentTime').textContent = now.toLocaleTimeString('id-ID', timeOptions);
+        }
+        
+        // Event listeners untuk input
+        function setupEventListeners() {
+            document.getElementById('selisihQty').addEventListener('input', calculateSelisihRp);
+            document.getElementById('pluInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchPLU();
+                }
+            });
+        }
+        
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('tanggal').value = today;
+            document.getElementById('filterStartDate').value = today;
+            document.getElementById('filterEndDate').value = today;
+            
+            // Update date and time every second
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            // Load data saat halaman pertama kali dibuka
+            syncData();
+            
+            // Event listeners
+            document.getElementById('addItemBtn').addEventListener('click', addItemToTable);
+            document.getElementById('clearBtn').addEventListener('click', clearAllItems);
+            document.getElementById('refreshBtn').addEventListener('click', function() {
+                loadMSItems();
+                loadKasirList();
+                loadHistory();
+                updateRecentActivity();
+                updateDashboardStats();
+            });
+            document.getElementById('syncBtn').addEventListener('click', syncData);
+        });
+    </script>
+</body>
+</html>
