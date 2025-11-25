@@ -34,7 +34,10 @@ Wajib diatur di Render:
 
 1. Push code ke GitHub
 2. Connect repository ke Render
-3. Set environment variables
+3. Set environment variables:
+   - `GCP_SERVICE_ACCOUNT`
+   - `SPREADSHEET_ID` 
+   - `WORKSHEET_NAME` (optional)
 4. Deploy!
 
 ## 🐛 Troubleshooting
@@ -44,3 +47,13 @@ Jika data tidak muncul:
 2. Pastikan SPREADSHEET_ID benar
 3. Pastikan service account memiliki akses ke sheet
 4. Pastikan WORKSHEET_NAME sesuai (case-sensitive)
+
+## 📊 Fitur
+
+- 📈 PPSA Analytics
+- 🛒 Tebus Analytics  
+- 🔍 Deep Insights
+- 🎯 Performance Alerts
+- 🕐 Performance Shift
+- 📅 Performance Per Hari
+- 🔧 Config Debug
